@@ -1,18 +1,22 @@
 //your code here!
-const infilist=document.getElementById('infi-list');
-for(let i=1;i<=10;i++){
-	const li=document.createElement('li');
-	li.textContent=`List item ${i}`;
-	infilist.appendChild(li);
+let list = document.querySelector("#infi-list");
+// console.log(list);
+
+for(let i=1; i<=10; i++)
+{
+  list.innerHTML += `<li>Item ${i}</li>`
 }
 
-windows.addEventListener('scroll', ()=>{
-	const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-	if(scrollTop + clientHeight >= scrollHeight-7){
-		for(let i=1;i<=2;i++){
-			const li=document.createElement('li');
-			li.textContent=`List item ${i+infilist.children.length}`;
-			infilist.appendChild(li);
-		}
-	}
-	});
+let n = 10;
+
+list.addEventListener("scroll", ()=>{
+ 
+  if(list.scrollHeight - list.scrollTop - list.clientHeight < 1){
+ 
+    list.innerHTML += `
+    <li>Item ${n+1}</li>
+    <li>Item ${n+2}</li>
+    `
+    n=n+2;
+  }
+})
